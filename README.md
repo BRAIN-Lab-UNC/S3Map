@@ -13,7 +13,9 @@ if only cpu is available, you can install the cpu version torch
 pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 ```
 otherwise, install the correct [torch](https://pytorch.org/get-started/locally/) version of your machine
+
 3. Prepare your data, i.e., inner surfaces in vtk format (the file name should end in '.vtk')
+
 4. Simply run "python s3all.py  -h" for the whole pipeline, and the expected output should be.
 ```
 python s3all.py  -h
