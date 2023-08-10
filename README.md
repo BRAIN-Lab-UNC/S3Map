@@ -36,6 +36,7 @@ optional arguments:
 
 ```
 An example output log can be found at [here](https://github.com/BRAIN-Lab-UNC/S3Map/blob/main/examples/example_log).
+
 5. Use [paraview](https://www.paraview.org/) to visualize all generated .vtk surfaces, or [read_vtk](https://github.com/zhaofenqiang/S3Map/blob/a96c103f66db443ba52cdafee28af798a527fc54/sphericalunet/utils/vtk.py#L26) into python environment for further processing.
 
 ## Train a new model on a new dataset
