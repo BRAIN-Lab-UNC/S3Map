@@ -52,8 +52,6 @@ if __name__ == "__main__":
     # surf.normalizeCurvature()
     surf.averageCurvature(avg_iter)
     print('Saving mean curvature to original input inner surface as a scalar property field.')
-    if np.mean(np.abs(surf.curv)) > 0.4:
-        raise Warning('Very large and noisy curv computed. The surface may be reconstructed incorrectly.')
     inner_surf_vtk['curv'] = surf.curv
     # write_vtk(inner_surf_vtk, input_name)
     t2 = time.time()
@@ -70,3 +68,5 @@ if __name__ == "__main__":
     t2 = time.time()
     print('Computing vertex-wise area done, took {:.1f} s'.format(t2-t1))
     
+    if np.mean(np.abs(surf.curv)) > 0.5:
+        raise Warning('Very large and noisy curv computed. The surface may be reconstructed incorrectly.')
