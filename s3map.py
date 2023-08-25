@@ -17,7 +17,7 @@ import math
 from s3pipe.models.models import SUnet
 from s3pipe.utils.interp_torch import convert2DTo3D, getEn, diffeomorp_torch, get_bi_inter
 from s3pipe.utils.utils import get_neighs_order, get_sphere_template, get_neighs_faces
-from s3pipe.surface.s3map import ResampledInnerSurf, computeMetrics_torch,\
+from s3pipe.surface.s3map import ResampledInnerSurfVtk, computeMetrics_torch,\
     moveOrigSphe, computeAndWriteDistortionOnOrigSphe, \
         computeAndWriteDistortionOnRespSphe
 from s3pipe.surface.prop import countNegArea
@@ -111,7 +111,7 @@ if __name__ == "__main__":
             raise NotImplementedError('Error')
         
                 
-        test_dataset = ResampledInnerSurf(resp_inner_file, n_vertex)
+        test_dataset = ResampledInnerSurfVtk(resp_inner_file, n_vertex)
         test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=1, shuffle=False, pin_memory=True)
         
         model = SUnet(in_ch=12, out_ch=2, level=level, n_res=n_res, rotated=0, complex_chs=32)
@@ -188,7 +188,7 @@ if __name__ == "__main__":
                 orig_inner_surf = read_vtk(file.replace('.inflated.SIP.10242moved.40962moved.RespInner.vtk', '.vtk'))
             
             print("\nMoving original sphere according to ico sphere deformation...")
-            orig_sphere_moved = moveOrigSphe(template, orig_sphe_surf, moved_surf, orig_inner_surf, neighs_faces)
+            orig_sphere_moved = moveOrigSphe(template, orig_sphe_surf, moved_surf, orig_inner_surf, neighs_faces, orig_sphe_moved_name)
             print("Moving original sphere done!")
              
             if save_interim_results:
